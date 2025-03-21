@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CD Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+      color: #1E293B;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: #1E293B;
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 0;
+    }
+    .section { padding: 80px 0; }
+    .section.dark {
+      background-color: #1E293B;
+      color: #ffffff;
+    }
+    .section.dark .service-item {
+      background-color: #ffffff;
+      color: #1E293B;
+    }
+    .hero {
+      background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.9)), url('https://images.unsplash.com/photo-1581091870622-7c6c49d36a7c') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 160px 20px;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      margin-bottom: 1rem;
+      color: #38bdf8;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    .cta-button {
+      background-color: #38bdf8;
+      color: #1E293B;
+      border: none;
+      padding: 14px 36px;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: #0ea5e9;
+    }
+    .navbar {
+      background-color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 16px 0;
+      margin: 0;
+    }
+    .navbar li { margin: 0 20px; }
+    .navbar a {
+      text-decoration: none;
+      color: #1E293B;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .navbar a:hover {
+      color: #38bdf8;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .service-item {
+      background-color: #ffffff;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease;
+    }
+    .service-item:hover {
+      transform: translateY(-8px);
+    }
+    .service-item h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+    .service-item p {
+      font-size: 0.95rem;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li {
+      position: relative;
+      padding-left: 1.5em;
+      margin-bottom: 12px;
+    }
+    ul li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      color: #38bdf8;
+      font-weight: bold;
+    }
+    .footer {
+      background-color: #1E293B;
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+      font-size: 0.9rem;
+    }
+    /* Popup Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    }
+    .modal-content label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+    .modal-content input,
+    .modal-content textarea,
+    .modal-content select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .modal-content button {
+      margin-top: 20px;
+      background: #38bdf8;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .modal-content button:hover {
+      background: #0ea5e9;
+    }
+  </style>
+  <script>
+    function openModal() {
+      document.getElementById('requestModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('requestModal').style.display = 'none';
+    }
+    function submitRequest(e) {
+      e.preventDefault();
+      const requiredFields = ['goal', 'type', 'timeline'];
+      for (let id of requiredFields) {
+        if (!document.getElementById(id).value.trim()) {
+          alert('Please complete all required fields.');
+          return;
+        }
+      }
+      alert('Your consultation request has been submitted.');
+      closeModal();
+    }
+  </script>
+</head>
+<body>
+  <header class="hero">
+    <h1>CD Consulting</h1>
+    <p>Unlock clarity. Accelerate growth. Build smarter systems with strategic consulting built for the modern enterprise.</p>
+    <button onclick="openModal()" class="cta-button">Request a Consultation</button>
+  </header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Solutions</a></li>
+      <li><a href="#skills">Expertise</a></li>
+      <li><a href="#request">Request</a></li>
+    </ul>
+  </nav>
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>As a strategic advisor, I partner with businesses to bridge operational gaps, elevate customer experiences, and align technology with long-term vision. I combine analytical rigor with creative thinking to turn complex problems into elegant solutions.</p>
+    </div>
+  </section>
+  <section id="services" class="section dark">
+    <div class="container">
+      <h2>Solutions</h2>
+      <div class="service-grid">
+        <div class="service-item">
+          <h3>Business Insight & Strategy</h3>
+          <p>Clarify direction using market intelligence, performance data, and forecasting to shape informed strategic moves.</p>
+        </div>
+        <div class="service-item">
+          <h3>Operational Systems Design</h3>
+          <p>Reimagine internal workflows and structures to enhance agility, productivity, and cost-efficiency at scale.</p>
+        </div>
+        <div class="service-item">
+          <h3>Customer Experience Optimization</h3>
+          <p>Engineer retention-focused journeys and service strategies that drive loyalty and sustained lifetime value.</p>
+        </div>
+        <div class="service-item">
+          <h3>Market Positioning & Research</h3>
+          <p>Conduct in-depth market analysis and competitor benchmarking to pinpoint strategic opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="skills" class="section">
+    <div class="container">
+      <h2>Expertise</h2>
+      <ul>
+        <li>Salesforce & CRM Systems</li>
+        <li>Business Process Reengineering</li>
+        <li>Financial & KPI Dashboards</li>
+        <li>Customer Experience Strategy</li>
+        <li>Cross-Functional Collaboration</li>
+      </ul>
+    </div>
+  </section>
+  <section id="request" class="section dark">
+    <div class="container">
+      <h2>Submit a Request</h2>
+      <p>Let’s align strategy with action. Submit a priority consultation request to explore how we can transform your operations or market approach.</p>
+      <button class="cta-button" onclick="openModal()">Open Consultation Form</button>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 CD Consulting. Built for forward thinkers.</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="requestModal">
+    <div class="modal-content">
+      <h3>Consultation Request</h3>
+      <form onsubmit="submitRequest(event)">
+        <label for="goal">What would you like to accomplish?</label>
+        <textarea id="goal" required></textarea>
+        <label for="type">Type of Consulting</label>
+        <select id="type" required>
+          <option value="">Select one...</option>
+          <option>Operations</option>
+          <option>Strategy</option>
+          <option>Customer Experience</option>
+          <option>Market Research</option>
+          <option>Technology</option>
+        </select>
+        <label for="timeline">Timeline</label>
+        <select id="timeline" required>
+          <option value="">Select one...</option>
+          <option>1 month</option>
+          <option>2 months</option>
+          <option>3 months</option>
+          <option>4 months</option>
+          <option>5 months</option>
+          <option>6+ months</option>
+        </select>
+        <button type="submit">Submit Request</button>
+        <button type="button" onclick="closeModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
