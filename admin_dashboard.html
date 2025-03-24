@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - CD Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #1a1a1a;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 240px;
+      background-color: #121926;
+      color: white;
+      padding: 20px;
+      flex-shrink: 0;
+    }
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+    }
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .sidebar a:hover {
+      color: #1f6feb;
+    }
+    .main {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+    .topbar {
+      margin-bottom: 30px;
+    }
+    .topbar h1 {
+      font-size: 2rem;
+      color: #121926;
+    }
+    .card {
+      background: white;
+      border: 1px solid #dce3ec;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      color: #1f6feb;
+    }
+    .card p {
+      margin: 6px 0;
+    }
+    .card button {
+      margin-top: 10px;
+      background: #1f6feb;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .chat-box {
+      background: #f1f5f9;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .chat-msg {
+      margin: 10px 0;
+    }
+    .chat-msg.admin { text-align: right; color: #1f6feb; }
+    .chat-msg.client { text-align: left; color: #121926; }
+    .chat-input {
+      display: flex;
+      margin-top: 12px;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px 0 0 6px;
+      font-size: 1rem;
+    }
+    .chat-input button {
+      padding: 10px 20px;
+      background: #1f6feb;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      border-radius: 0 6px 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin</h2>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#requests">Requests</a>
+    <a href="#messages">Messages</a>
+    <a href="#payments">Payments</a>
+    <a href="#clients">Clients</a>
+    <a href="/admin/logout">Logout</a>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <h1>Welcome, Admin</h1>
+    </div>
+
+    <div id="requests">
+      <h2>Consultation Requests</h2>
+      <div class="card">
+        <h3>Jane Doe</h3>
+        <p><strong>Email:</strong> jane@example.com</p>
+        <p><strong>Type:</strong> Marketing</p>
+        <p><strong>Timeline:</strong> 2 Months</p>
+        <p><strong>Goals:</strong> Build a new email funnel and automate onboarding.</p>
+        <button onclick="sendPayment('Jane Doe', 'Consultation Payment', 99)">Send $99 Payment Request</button>
+      </div>
+    </div>
+
+    <div id="messages">
+      <h2>Client Messages</h2>
+      <div class="chat-box">
+        <div class="chat-msg client">Hi, how long until I get a proposal?</div>
+        <div class="chat-msg admin">I'll send it this afternoon. Thanks for your patience!</div>
+        <div class="chat-input">
+          <input type="text" placeholder="Type a message...">
+          <button>Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function sendPayment(clientName, label, amount) {
+      const res = await fetch('/admin/create-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ label: label + ' for ' + clientName, amount })
+      });
+
+      const data = await res.json();
+      if (data.checkout_url) {
+        window.open(data.checkout_url, '_blank');
+      } else {
+        alert('Payment error: ' + data.error);
+      }
+    }
+  </script>
+</body>
+</html>
