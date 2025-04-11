@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CD Consultation</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #1e293b;
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: #1e40af;
+    }
+    header.hero {
+      background: linear-gradient(rgba(30, 41, 59, 0.85), rgba(30, 41, 59, 0.85)),
+        url('https://tse1.mm.bing.net/th?id=OIP.n4z1hwHdWSYJZLif3RXueAHaE8&pid=Api') no-repeat center center/cover;
+      text-align: center;
+      padding: 160px 20px;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      color: #ffffff;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 20px auto;
+      color: #f8fafc;
+    }
+    .cta-button {
+      background: #3b82f6;
+      color: white;
+      padding: 14px 36px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .cta-button:hover { background: #2563eb; }
+    nav.navbar {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 12px 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #1e293b;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 6px 10px;
+    }
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      nav ul li a {
+        font-size: 1rem;
+        padding: 8px 0;
+      }
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .section {
+      padding: 60px 0;
+    }
+    @media (max-width: 768px) {
+      .section {
+        padding: 40px 10px;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+    .section.bg {
+      background-color: #e2e8f0;
+    }
+    footer.footer {
+      background-color: #1e3a8a;
+      color: #f1f5f9;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 1rem;
+      background-color: #ffffff;
+      color: #1e293b;
+    }
+    form button {
+      margin-top: 20px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .pricing-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      padding: 30px;
+      color: #1e293b;
+    }
+    .pricing-card h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: #1d4ed8;
+    }
+    .pricing-card p {
+      font-size: 1rem;
+      color: #475569;
+      margin-bottom: 10px;
+    }
+  </style>
+<body>
+  <nav class="navbar">
+    <div><strong>CD Consultation</strong></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Solutions</a></li>
+      <li><a href="#consult">Consultation</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#payment">Payment</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>CD Consultation</h1>
+    <p>I help business owners build clarity, structure, and momentum—no middlemen, no fluff.</p>
+    <a class="cta-button" href="#consult">Request a Consultation</a>
+  </header>
+
+  <main>
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About Me</h2>
+        <p>Consulting With Chris supports startups and emerging business owners in building structure, scalability, and strategy into their operations. With experience spanning operations, branding, and marketing, each engagement is managed directly with no handoffs or intermediaries. The focus is on delivering practical solutions and clear results aligned with your business goals.</p>
+      </div>
+    </section>
+
+    <section id="services" class="section bg">
+      <div class="container">
+        <h2>Solutions That Drive Growth</h2>
+        <ul style="list-style: none; padding: 0;">
+          <li><strong>✓ Strategic Clarity:</strong> Define your edge and turn it into a roadmap.</li>
+          <li><strong>✓ Smarter Systems:</strong> Build workflows that scale without chaos.</li>
+          <li><strong>✓ Sustainable Growth:</strong> Use data and discipline to expand efficiently.</li>
+          <li><strong>✓ Marketing That Converts:</strong> Attract ideal customers with sharp messaging.</li>
+          <li><strong>✓ Aligned Teams:</strong> Unite your people around what matters most.</li>
+          <li><strong>✓ Basic UX Design:</strong> Create intuitive user flows and improve customer experience.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section bg" id="pricing">
+      <div class="container">
+        <h2>Work With Me</h2>
+        <p>Flexible pricing based on your goals and timeline. Choose hourly support or project-based engagements:</p>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Strategy Sessions</h3>
+            <p>Build a strategy that drives clarity, focus, and traction.</p>
+            <p><strong>Rates from $80–$150/hr</strong></p>
+          </div>
+          <div class="pricing-card">
+            <h3>Systems Efficiency</h3>
+            <p>Streamline your operations for smoother scaling.</p>
+            <p><strong>Rates from $75–$120/hr</strong></p>
+          </div>
+          <div class="pricing-card">
+            <h3>Business Process Revamp</h3>
+            <p>Redesign your workflows for long-term impact.</p>
+            <p><strong>Starting at $300/project</strong></p>
+          </div>
+          <div class="pricing-card">
+            <h3>Growth Advisory</h3>
+            <p>Ongoing strategy and performance optimization.</p>
+            <p><strong>Rates from $100–$175/hr</strong></p>
+          </div>
+          <div class="pricing-card">
+            <h3>Marketing Strategy</h3>
+            <p>Conversion-driven campaigns that get results.</p>
+            <p><strong>Rates from $75–$130/hr</strong></p>
+          </div>
+          <div class="pricing-card">
+            <h3>Brand Identity</h3>
+            <p>Create a brand that your audience instantly trusts.</p>
+            <p><strong>Starting at $600/project</strong></p>
+          </div>
+          <div class="pricing-card">
+            <h3>Team & Culture Alignment</h3>
+            <p>Strengthen collaboration and internal communication.</p>
+            <p><strong>Rates from $80–$140/hr</strong></p>
+          </div>
+          <div class="pricing-card">
+            <h3>Basic UX Design</h3>
+            <p>Create intuitive, user-friendly layouts and improve usability.</p>
+            <p><strong>Starting at $250/project</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="consult" class="section">
+      <div class="container">
+        <h2>Start Your Consultation</h2>
+        <p>Please be as detailed as possible when submitting your request. The more context, the better the outcome. I’ll respond within 24 hours.</p>
+        <form action="https://formspree.io/f/xwplnnye" method="POST">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="type">Service Type *</label>
+          <select id="type" name="type" required>
+            <option value="">-- Select a Service --</option>
+            <option value="Strategy Sessions">Strategy Sessions</option>
+            <option value="Systems Efficiency">Systems Efficiency</option>
+            <option value="Business Process Revamp">Business Process Revamp</option>
+            <option value="Growth Advisory">Growth Advisory</option>
+            <option value="Marketing Strategy">Marketing Strategy</option>
+            <option value="Brand Identity">Brand Identity</option>
+            <option value="Team & Culture Alignment">Team & Culture Alignment</option>
+            <option value="Basic UX Design">Basic UX Design</option>
+          </select>
+
+          <label for="timeline">Estimated Timeline *</label>
+          <select id="timeline" name="timeline" required>
+            <option value="">-- Select --</option>
+            <option value="1">1 Month</option>
+            <option value="2">2 Months</option>
+            <option value="3">3 Months</option>
+            <option value="4">4 Months</option>
+            <option value="5">5 Months</option>
+            <option value="6">6 Months+</option>
+          </select>
+
+          <label for="industry">What industry is your business in? *</label>
+          <input type="text" id="industry" name="industry" required />
+
+          <label for="teamSize">How many people are on your team?</label>
+          <input type="text" id="teamSize" name="teamSize" />
+
+          <label for="consultedBefore">Have you worked with a consultant before?</label>
+          <select id="consultedBefore" name="consultedBefore">
+            <option value="">-- Select --</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+
+          <label for="goals">What are your current business challenges? *</label>
+          <textarea id="goals" name="goals" rows="3" required></textarea>
+
+          <label for="outcome">What outcome would make this engagement a success? *</label>
+          <textarea id="outcome" name="outcome" rows="3" required></textarea>
+
+          <label for="vision">What would success look like 6 months from now?</label>
+          <textarea id="vision" name="vision" rows="3"></textarea>
+
+          <button class="cta-button" type="submit">Submit Request</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="payment" class="section bg">
+      <div class="container">
+        <h2>Make a Payment</h2>
+        <p>Lock in your session or project and get started—payment is fast, secure, and confirmation is sent immediately.</p>
+        <a href="https://buy.stripe.com/3cs5ms2oTgQN5u8000" class="cta-button" target="_blank">Pay via Stripe</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Consulting With Chris. Built for clarity, driven by results.</p>
+    </div>
+  </footer>
+</body>
+</html>
