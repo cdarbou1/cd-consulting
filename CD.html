@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Consulting With Chris: tailored strategy, operational efficiency, brand development, and growth solutions for solo professionals and businesses.">
+  <title>Consulting With Chris</title>
+  <link rel="icon" href="favicon.ico">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Swiper for Testimonials -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
+  <style>
+    :root {
+      --primary: #002D62;
+      --accent: #FF6F61;
+      --light: #F9FAFB;
+      --dark: #1A1A1A;
+      --white: #FFFFFF;
+      --transition: 0.3s;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--light); line-height: 1.6; }
+    a { color: var(--primary); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent); }
+
+    /* Header & Nav */
+    header { background: var(--white); box-shadow: 0 2px 6px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: var(--primary); }
+
+    /* Hero */
+    .hero { height: 70vh; background: url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+    .hero-content { position: relative; color: var(--white); padding: 0 1rem; }
+    .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 1rem; }
+    .hero-content p { font-size: 1.125rem; margin-bottom: 1.5rem; max-width: 700px; margin: 0 auto; }
+    .btn-primary { background: var(--accent); color: var(--white); padding: 0.75rem 2rem; border: none; border-radius: 4px; font-weight: 600; transition: background var(--transition); cursor: pointer; }
+    .btn-primary:hover { background: #e65b51; }
+
+    section { padding: 4rem 0; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; text-align: center; }
+
+    /* About */
+    #about p { max-width: 800px; margin: 0 auto; }
+
+    /* Process */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    .process-step { display: flex; gap: 1rem; margin-bottom: 2rem; }
+    .process-step i { font-size: 1.5rem; color: var(--accent); margin-top: 4px; }
+    .process-step div h4 { margin-bottom: 0.5rem; color: var(--accent); }
+
+    /* Services */
+    .services .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2rem; margin-top: 2rem; }
+    .service-card { background: var(--white); padding: 2rem; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform var(--transition); }
+    .service-card:hover { transform: translateY(-5px); }
+    .service-card h3 { margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; color: var(--accent); }
+    .service-card p { font-size: 0.95rem; }
+
+    /* Testimonials */
+    .swiper { padding: 2rem 0; }
+    .swiper-slide { background: var(--white); padding: 2rem; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; }
+    .testimonial-text { font-style: italic; margin-bottom: 1rem; }
+    .testimonial-author { font-weight: 600; }
+
+    /* Tabs & Pricing */
+    .tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+    .tab-btn { background: var(--white); border: 1px solid var(--primary); border-radius: 4px; padding: 0.75rem 1.5rem; cursor: pointer; transition: background var(--transition); }
+    .tab-btn.active, .tab-btn:hover { background: var(--primary); color: var(--white); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .price-card { background: var(--white); padding: 2rem; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; margin-bottom: 2rem; cursor: pointer; transition: transform var(--transition); }
+    .price-card:hover { transform: translateY(-5px); }
+    .price-card h3 { margin-bottom: 0.5rem; color: var(--primary); }
+    .price { font-size: 1.5rem; font-weight: 600; color: var(--accent); margin: 1rem 0; }
+
+    /* FAQ */
+    .faq-item + .faq-item { margin-top: 1rem; }
+    .faq-question { background: var(--white); padding: 1rem; border-radius: 4px; cursor: pointer; border: 1px solid #ddd; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height var(--transition); background: #fff; padding: 0 1rem; }
+    .faq-item.open .faq-answer { max-height: 200px; padding: 1rem; }
+
+    /* Contact Form */
+    #consult form { max-width: 600px; margin: 0 auto; background: var(--white); padding: 2rem; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    #consult label { display: block; margin-top: 1rem; font-weight: 600; font-size: 0.95rem; }
+    #consult input, #consult select, #consult textarea { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; margin-top: 0.5rem; }
+    #consult textarea { resize: vertical; }
+    #consult button { margin-top: 1.5rem; width: 100%; }
+
+    /* Newsletter */
+    #newsletter { background: var(--white); padding: 2rem; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto; }
+    #newsletter input { width: calc(100% - 140px); display: inline-block; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px 0 0 4px; }
+    #newsletter button { display: inline-block; padding: 0.75rem 1rem; border: none; background: var(--accent); color: #fff; border-radius: 0 4px 4px 0; cursor: pointer; }
+
+    /* Footer */
+    footer { background: var(--primary); color: var(--white); text-align: center; padding: 2rem 0; font-size: 0.9rem; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .nav-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; background: var(--white); position: absolute; top: 60px; left: 0; right: 0; padding: 1rem; }
+      .nav-links.active { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Consulting With Chris</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#process">Process</a>
+          <a href="#services">Services</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#consult">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" data-aos="zoom-in">
+    <div class="hero-content container">
+      <h1>Elevate Your Business & Brand</h1>
+      <p>I help solo professionals and businesses streamline workflows, amplify brand presence, and implement growth strategies tailored to your unique goals.</p>
+      <button class="btn-primary" data-scroll-target="#consult">Tell me About Your Project</button>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- About -->
+    <section id="about" data-aos="fade-up">
+      <h2>About Chris</h2>
+      <p>With over six years of consulting experience, Chris has led projects that reduced operational costs by 30%, increased client retention by 25%, and launched brands that truly resonate. He combines analytical rigor with creative thinking to deliver customized solutions that grow your bottom line.</p>
+    </section>
+
+    <!-- Process -->
+    <section id="process" data-aos="fade-up" data-aos-delay="100">
+      <h2>My Process</h2>
+      <div class="grid-2">
+        <div>
+          <div class="process-step">
+            <i class="fas fa-search"></i>
+            <div><h4>Discovery</h4><p>Deep dive into your business, current challenges and desired outcomes.</p></div>
+          </div>
+          <div class="process-step">
+            <i class="fas fa-lightbulb"></i>
+            <div><h4>Blueprint</h4><p>Custom roadmap with milestones, KPIs and recommended tools.</p></div>
+          </div>
+          <div class="process-step">
+            <i class="fas fa-cogs"></i>
+            <div><h4>Implementation</h4><p>Hands-on support: workflows, automations and marketing activations.</p></div>
+          </div>
+          <div class="process-step">
+            <i class="fas fa-chart-line"></i>
+            <div><h4>Optimize</h4><p>Regular reviews, data insights and iterative improvements.</p></div>
+          </div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Consulting session" loading="lazy" style="width:100%; border-radius:6px;">
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services" data-aos="fade-up" data-aos-delay="200">
+      <h2>Services</h2>
+      <div class="grid">
+        <div class="service-card" data-aos="fade-up">
+          <h3><i class="fas fa-chart-pie"></i> Business Strategy</h3>
+          <p>Market analysis, positioning and long-term growth planning to outpace competition.</p>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="50">
+          <h3><i class="fas fa-bullhorn"></i> Brand Development</h3>
+          <p>Logo, messaging and visual identity that connects emotionally with your audience.</p>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <h3><i class="fas fa-cogs"></i> Operations Optimization</h3>
+          <p>Process mapping, automations and tools integration for maximum efficiency.</p>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="150">
+          <h3><i class="fas fa-chart-line"></i> Data & BI</h3>
+          <p>Custom dashboards, reporting and analytics for data-driven decisions.</p>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <h3><i class="fas fa-envelope"></i> Lifecycle Marketing</h3>
+          <p>Email campaigns, funnels and CRM workflows that nurture and convert leads.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" data-aos="fade-up" data-aos-delay="300">
+      <h2>What Clients Say</h2>
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <p class="testimonial-text">“Chris transformed our operations—what used to take days now happens in minutes.”</p>
+            <p class="testimonial-author">— Jamie L., CEO</p>
+          </div>
+          <div class="swiper-slide">
+            <p class="testimonial-text">“The brand overhaul was seamless and exactly on point. We’ve never looked better.”</p>
+            <p class="testimonial-author">— Morgan S., Founder</p>
+          </div>
+          <div class="swiper-slide">
+            <p class="testimonial-text">“Monthly check-ins and KPIs keep us on track. Couldn’t ask for more.”</p>
+            <p class="testimonial-author">— Taylor K., Marketing Director</p>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing" data-aos="fade-up" data-aos-delay="350">
+      <h2>Choose Your Plan</h2>
+      <div class="tabs">
+        <button class="tab-btn active" data-target="solo">Solo Pro</button>
+        <button class="tab-btn" data-target="business">Business</button>
+        <button class="tab-btn" data-target="enterprise">Enterprise</button>
+      </div>
+      <div id="solo" class="tab-content active">
+        <div class="price-card" data-plan="Solo Professional">
+          <h3>Solo Professional</h3>
+          <div class="price">$65/hr</div>
+          <ul>
+            <li>1-hour strategy session</li>
+            <li>Quick process audit</li>
+            <li>2 detailed action items</li>
+          </ul>
+        </div>
+      </div>
+      <div id="business" class="tab-content">
+        <div class="price-card" data-plan="Business Builder">
+          <h3>Business Builder</h3>
+          <div class="price">$150/mo</div>
+          <ul>
+            <li>4 hrs consulting/month</li>
+            <li>Workflow automation</li>
+            <li>KPI dashboard & monthly call</li>
+          </ul>
+        </div>
+      </div>
+      <div id="enterprise" class="tab-content">
+        <div class="price-card" data-plan="Enterprise Accelerator">
+          <h3>Enterprise Accelerator</h3>
+          <div class="price">Custom Quote</div>
+          <ul>
+            <li>Dedicated strategist</li>
+            <li>Full brand & marketing overhaul</li>
+            <li>Quarterly on-site workshops</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" data-aos="fade-up" data-aos-delay="400">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question">How soon can we start?</div>
+        <div class="faq-answer"><p>Typically within one week of initial discovery, pending your availability.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Do you offer retainers?</div>
+        <div class="faq-answer"><p>Yes, retainer packages are available for ongoing advisory and support.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Can you integrate with our existing tools?</div>
+        <div class="faq-answer"><p>Absolutely—we work with most CRMs, project management and marketing platforms.</p></div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="consult" data-aos="fade-up" data-aos-delay="450">
+      <h2>Start Your Project</h2>
+      <form action="https://formspree.io/f/xwplnnye" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="service">Select Service</label>
+        <select id="service" name="service" required>
+          <option value="">— Choose One —</option>
+          <option value="Solo Professional">Solo Professional</option>
+          <option value="Business Builder">Business Builder</option>
+          <option value="Enterprise Accelerator">Enterprise Accelerator</option>
+        </select>
+        <label for="goals">Top 3 Goals</label>
+        <textarea id="goals" name="goals" rows="2" placeholder="Your primary objectives" required></textarea>
+        <label for="challenges">Key Challenges</label>
+        <textarea id="challenges" name="challenges" rows="2" placeholder="Obstacles or pain points" required></textarea>
+        <label for="details">Additional Details</label>
+        <textarea id="details" name="details" rows="4" placeholder="Any other info to tailor the approach"></textarea>
+        <button type="submit" class="btn-primary">Submit</button>
+      </form>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter" data-aos="fade-up" data-aos-delay="500">
+      <h2>Stay Informed</h2>
+      <p>Get free tips, templates and updates delivered to your inbox.</p>
+      <form action="#" method="POST">
+        <input type="email" name="newsletter-email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+
+  <footer data-aos="fade-up" data-aos-delay="550">
+    <div class="container">
+      <p>&copy; 2025 Consulting With Chris. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Chat Icon -->
+  <a href="#consult" class="btn-primary" style="position: fixed; bottom: 1.5rem; right: 1.5rem; border-radius: 50%; width: 3.5rem; height: 3.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <i class="fas fa-comments"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    document.querySelectorAll('[data-scroll-target]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const target = document.querySelector(e.currentTarget.dataset.scrollTarget);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.price-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.getElementById('service').value = card.dataset.plan;
+        document.querySelector('#consult').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('open');
+      });
+    });
+
+    new Swiper('.swiper', {
+      loop: true,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      autoplay: { delay: 5000 },
+      slidesPerView: 1,
+      breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+    });
+  </script>
+</body>
+</html>
